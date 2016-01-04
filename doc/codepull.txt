@@ -1,0 +1,8 @@
+This file describes the code pulling plugin, which allows you to easily pull
+code from sites like Github, Quora, Stack Overflow, and BitBucket without
+leaving your editor. To use this plugin, simply enter command mode, and type
+':Pull' followed by a description of the function you want. For example, if you
+are writing in Python, and you want a function that reverses a string, you
+simply have to type :Pull reverse string. Your file type is automatically
+checked by the plugin to filter only relevant code. This plugin inserts the code
+most likely to fulfill your search terms under the current line. 
