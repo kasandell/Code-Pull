@@ -4,7 +4,9 @@ This vim plugin allows you to pull code from the web into your own code, without
 To use this plugin, simply clone this project in your system's ```~/.vim``` directory.
 After installing, the plugin should load whenever vim is launched.
 ##Usage
-To use this plugin, open vim, position your cursor on the line above where you want to put the code. Then enter command mode and type ```:Pull *search terms*```, where *search terms* is a description of the function you want to pull. You do not need to include the language name, as the plugin infers this from the file type of the file you are editing.
+To use this plugin, open vim, position your cursor on the line above where you want to put the code. Then enter command mode and type 
+<pre>:Pull <i>search terms</i></pre>
+where *search terms* is a description of the function you want to pull. You do not need to include the language name, as the plugin infers this from the file type of the file you are editing.
 ###Example
 Open vim with a python file, say *rev.py*. Once in the editor, type ```:Pull reverse string```. The plugin will run for a few seconds, and then insert a method that reverses a string below the cursor position.
 ##Contributing
