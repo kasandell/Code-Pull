@@ -32,7 +32,7 @@ class CodeRetriever:
 	def __init__(self, initKeywords, lang):
 		self.keywords = initKeywords
 		d = {}
-		rd = open(r'langs.csv', 'r').readlines()
+		rd = open(os.path.expanduser('~/.vim/plugin/langs.csv'), 'r').readlines()
 		for line in rd:
 			kv = line.split(' ')
 			k = kv[0]
@@ -67,7 +67,7 @@ class CodeRetriever:
 			codeLine =''
 
 			#list of general programming terms we don't want included
-			unwanted = open('generalTerms', 'rU').read().split(',')
+			unwanted = open(os.path.expanduser('~/.vim/plugin/generalTerms'), 'rU').read().split(',')
 			#delete all general terms from the keywords
 			for word in unwanted:
 				for check in self.keywords:
