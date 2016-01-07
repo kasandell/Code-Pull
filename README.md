@@ -11,3 +11,4 @@ Open vim with a python file, say *rev.py*. Once in the editor, type ```:Pull rev
 Any and all help or improvements on this project is very much welcome. You should start by taking a look at [current issues](https://github.com/kasandell/Code-Pull/issues), and seeing what you can fix/improve there.
 ###Current Contribution Ideas
 •Port to [Atom text editor](https://atom.io)
+•Use [searchcode's](https://searchcode.com/api/) api to correctly map more filetypes(```echo &filetype) to their id number as assigned by searchcode
