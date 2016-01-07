@@ -1,7 +1,7 @@
 #Code Pull
 This vim plugin allows you to pull code from the web into your own code, without ever leaving the editor
 ##Setup
-To use this plugin, simply clone this project in your system's ```~/.vim``` directory.
+This plugin is pathogen compatible. If you do not have pathogen, simply clone this project in your system's ```~/.vim``` directory.
 After installing, the plugin should load whenever vim is launched.
 ##Usage
 To use this plugin, open vim, position your cursor on the line above where you want to put the code. Then enter command mode and type 
