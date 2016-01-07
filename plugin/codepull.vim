@@ -31,13 +31,36 @@ class CodeRetriever:
 	#initialize the class with keywords and language
 	def __init__(self, initKeywords, lang):
 		self.keywords = initKeywords
-		d = {}
-		rd = open(os.path.expanduser('~/.vim/plugin/langs.csv'), 'r').readlines()
-		for line in rd:
-			kv = line.split(' ')
-			k = kv[0]
-			v = kv[1]
-			d[k] = v
+		d = {'javascript': '22',
+			'swift':137,
+			'python':19,
+			'c': 28,
+			'java':23,
+			'php':24,
+			'cpp':16,
+			'lisp':29,
+			'html':3,
+			'header':15,
+			'ruby':32,
+			'perl':51,
+			'vimscript':33,
+			'haskell':40,
+			'scala':47,
+			'markdown':118,
+			'pascal':46,
+			'erlang':25,
+			'actionscript':42,
+			'lua':54,
+			'go':55,
+			'objective-c':21,
+			'json':122,
+			'd':45,
+			'config':113,
+			'ocaml':64,
+			'coffeescript':106,
+			'matlab':20,
+			'assembly':34,
+			'typescript':151}
 		l = d[lang]
 		self.language = int(l)#this will be determined from the ending of the file
 		#print self.language
@@ -67,7 +90,7 @@ class CodeRetriever:
 			codeLine =''
 
 			#list of general programming terms we don't want included
-			unwanted = open(os.path.expanduser('~/.vim/plugin/generalTerms'), 'rU').read().split(',')
+			unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
 			#delete all general terms from the keywords
 			for word in unwanted:
 				for check in self.keywords:
