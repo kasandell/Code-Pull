@@ -8,7 +8,8 @@ function! PullCode(description)
 
 python <<_EOF_
 
-import csv
+#import csv
+import os
 import collections
 import json
 from HTMLParser import HTMLParser
@@ -31,14 +32,14 @@ class CodeRetriever:
 	def __init__(self, initKeywords, lang):
 		self.keywords = initKeywords
 		d = {}
-		rd = open('langs.csv', 'r').readlines()
+		rd = open(r'langs.csv', 'r').readlines()
 		for line in rd:
 			kv = line.split(' ')
 			k = kv[0]
 			v = kv[1]
 			d[k] = v
-		#l = d[lang]
-		self.language = 19#int(l)#this will be determined from the ending of the file
+		l = d[lang]
+		self.language = int(l)#this will be determined from the ending of the file
 		#print self.language
 
 	def removeCommentOnlyCode(self, codeGroups):
