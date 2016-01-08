@@ -16,3 +16,6 @@ Any and all help or improvements on this project is very much welcome. You shoul
 
 
 •Use [searchcode's](https://searchcode.com/api/) api to correctly map more filetypes(```echo &filetype) to their id number as assigned by searchcode
+
+
+•Help me create a psuedo-style language to allow for easy prototyping of functions, that you can pass to the plugin, and have the function built in your code in your preferred language.
