@@ -20,13 +20,6 @@ import requests
 import vim
 class CodeRetriever:
 
-	#initialize the class empty
-	#this will probably never get used, but if I end up using this somewhere else, it could work out well
-	def __init__(self):
-		self.keywords = []
-		self.language = 19#default to the language we are writing in
-
-
 
 	#initialize the class with keywords and language
 	def __init__(self, initKeywords, lang):
