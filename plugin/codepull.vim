@@ -11,7 +11,6 @@ python <<_EOF_
 #import csv
 import os
 import collections
-import json
 from HTMLParser import HTMLParser
 import re
 import urllib
@@ -121,12 +120,9 @@ class CodeRetriever:
 		query = 'https://searchcode.com/api/codesearch_I/'#?q=reverse+string&lan=19'
 		q = {'q':params,
 			'lan':self.language}#for testing purposes, make this python. Will add a dict later that has language to number mappings
-		param_str = '&'.join('%s=%s' %(k, v) for k,v in q.items())
-		param_str = param_str.replace(' ', '+')
-
 		#request the data from the page, and then we will pull the code out? or open the file to the location and pull out from start to end braces/ indent?
-		page = requests.get(query, params = param_str)
-		js = json.loads(page.content)
+		page = requests.get(query, params=q)
+		js = page.json()
 		firstCodeSet = js['results'][0]['lines']
 		lineGroups = self.getLineGroups(firstCodeSet)
 		#extract section of html containing top answer
