@@ -65,8 +65,7 @@ class CodeRetriever:
 
 		result = []
 		for group in codeGroups:
-			lines = group.splitlines()
-			if not any([isComment(line) for line in lines]):
+			if not any([isComment(line) for line in group.splitlines()]):
 				result.append(group)
 		return result
 
