@@ -61,7 +61,7 @@ class CodeRetriever:
 	def removeCommentOnlyCode(self, codeGroups):
 
 		def isComment(line):
-			return line.startswith('#') or line.startswith('//')or line.startswith('\'') or line.startswith('"')
+			return line[0] in '#\'"' or line.startswith('//')
 
 		allComment = []
 		for group in codeGroups:
