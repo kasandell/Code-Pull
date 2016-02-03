@@ -76,9 +76,9 @@ class CodeRetriever:
 			unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
 			#delete all general terms from the keywords
 			for word in unwanted:
-				for check in self.keywords:
-					if word.lower() == check.lower():
-						self.keywords.remove(check)
+				for keyword in self.keywords:
+					if word.lower() == keyword.lower():
+						self.keywords.remove(keyword)
 
 			#compile the lines into code segments
 			for outer in lineSegments:
