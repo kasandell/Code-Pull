@@ -12,6 +12,32 @@ import json
 import requests
 import vim
 
+def getLineGroups(lineDict):
+    lineNumbers = [int(k) for k in lineDict.keys()]
+    result = []
+    segment = []
+    lineNumbers.sort()
+    for lineNumber in lineNumbers:
+        if segment and lineNumber != int(max(segment))+1:
+            #it belongs in a new group, so finalize the old group, and start a new one
+            result.append(segment)
+            segment = []
+        segment.append(lineNumber)
+    result.append(segment)
+    return result
+
+
+def removeCommentOnlyCode(codeGroups):
+
+    def isComment(line):
+        return line[0] in '#\'"' or line.startswith('//')
+
+    def hasComments(group):
+        return any([isComment(line) for line in group.splitlines()])
+
+    return [g for g in codeGroups if not hasComments(g)]
+
+
 class CodeRetriever:
 
 
@@ -51,17 +77,6 @@ class CodeRetriever:
 		self.language = language_codes[language] #  this will be determined from the ending of the file
 		#print self.language
 
-	def removeCommentOnlyCode(self, codeGroups):
-
-		def isComment(line):
-			return line[0] in '#\'"' or line.startswith('//')
-
-		def hasComments(group):
-			return any([isComment(line) for line in group.splitlines()])
-
-		return [g for g in codeGroups if not hasComments(g)]
-
-
 
 	def pickMostLikelyCode(self, lineSegments, code):
 		"""Get the groupings of lines that are returned
@@ -85,7 +100,7 @@ class CodeRetriever:
 		for lineSegment in lineSegments:
 			codeLine = '\n'.join([code[str(s)] for s in lineSegment])
 			codeGroups.append(codeLine)
-		codeGroups = self.removeCommentOnlyCode(codeGroups)
+		codeGroups = removeCommentOnlyCode(codeGroups)
 		highestKeywords = []
 		keywordCount = 0
 		#find the code segment that best matches our needs, based on keywords found in the code
@@ -112,25 +127,10 @@ class CodeRetriever:
 		page = requests.get(query, params = param_str)
 		js = json.loads(page.content)
 		firstCodeSet = js['results'][0]['lines']
-		lineGroups = self.getLineGroups(firstCodeSet)
+		lineGroups = getLineGroups(firstCodeSet)
 		#extract section of html containing top answer
 		return self.pickMostLikelyCode(lineGroups, firstCodeSet)
 		#if we did, follow the link to the code, and extract the entire method that is there
-
-
-	def getLineGroups(self, lineDict):
-		lineNumbers = [int(k) for k in lineDict.keys()]
-		result = []
-		segment = []
-		lineNumbers.sort()
-		for lineNumber in lineNumbers:
-			if segment and lineNumber != int(max(segment))+1:
-				#it belongs in a new group, so finalize the old group, and start a new one
-				result.append(segment)
-				segment = []
-			segment.append(lineNumber)
-		result.append(segment)
-		return result
 
 
 args = vim.eval("a:description")
