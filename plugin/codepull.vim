@@ -8,16 +8,10 @@ function! PullCode(description)
 
 python <<_EOF_
 
-#import csv
-import os
-import collections
 import json
-from HTMLParser import HTMLParser
-import re
-import urllib
-import urllib2
 import requests
 import vim
+
 class CodeRetriever:
 
 
