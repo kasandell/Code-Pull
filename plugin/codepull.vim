@@ -121,7 +121,6 @@ class CodeRetriever:
 
 	def getLineGroups(self, lineDict):
 		lineNumbers = [int(k) for k in lineDict.keys()]
-		groupNumber = 0
 		result = []
 		segment = []
 		lineNumbers.sort()
@@ -140,7 +139,6 @@ class CodeRetriever:
 				#else, it belongs in a new group, so finalize the old group, and start a new one
 				else:
 					result.append(segment)
-					groupNumber = groupNumber + 1
 					segment = []
 					segment.append(firstLine)
 		result.append(segment)
