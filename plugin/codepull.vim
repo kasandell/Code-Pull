@@ -69,7 +69,6 @@ class CodeRetriever:
 			#a) does shit(we don't want method declarations and all that shit, we want code)
 			#b) seems to do the right thing (methods that are named similar to keywords)
 			#TODO: implement an algorithm that finds other ways to predict if code does the right thing
-			codeGroups = []
 
 			#list of general programming terms we don't want included
 			unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
@@ -77,6 +76,7 @@ class CodeRetriever:
 			self.keywords = [w for w in self.keywords if w.lower() not in unwanted]
 
 			#compile the lines into code segments
+			codeGroups = []
 			for lineSegment in lineSegments:
 				codeLine = '\n'.join([code[str(s)] for s in lineSegment])
 				codeGroups.append(codeLine)
