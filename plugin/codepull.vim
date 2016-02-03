@@ -70,7 +70,6 @@ class CodeRetriever:
 			#b) seems to do the right thing (methods that are named similar to keywords)
 			#TODO: implement an algorithm that finds other ways to predict if code does the right thing
 			codeGroups = []
-			codeLine =''
 
 			#list of general programming terms we don't want included
 			unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
