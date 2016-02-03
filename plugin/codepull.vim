@@ -61,7 +61,7 @@ class CodeRetriever:
 	def removeCommentOnlyCode(self, codeGroups):
 		allComment = []
 		for group in codeGroups:
-			lines = group.split('\n')
+			lines = group.splitlines()
 			for line in lines:
 				if line.startswith('#') or line.startswith('//')or line.startswith('\'') or line.startswith('"'):
 					allComment.append(True)
@@ -177,7 +177,7 @@ cr = CodeRetriever(argsDict, ftype)
 
 fin = cr.querySearchCode()
 
-codeArr = fin.split('\n')
+codeArr = fin.splitlines()
 vim.command("let ret = \"%s\"" %fin)
 
 _EOF_
