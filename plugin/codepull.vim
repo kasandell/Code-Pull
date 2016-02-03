@@ -48,8 +48,7 @@ class CodeRetriever:
 			'matlab':20,
 			'assembly':34,
 			'typescript':151}
-		l = d[lang]
-		self.language = l #  this will be determined from the ending of the file
+		self.language = d[lang] #  this will be determined from the ending of the file
 		#print self.language
 
 	def removeCommentOnlyCode(self, codeGroups):
