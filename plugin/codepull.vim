@@ -15,8 +15,8 @@ import vim
 class CodeRetriever:
 
 
-	#initialize the class with keywords and language
 	def __init__(self, initKeywords, language):
+		"""Initialize the class with keywords and language"""
 		self.keywords = initKeywords
 		language_codes = {'javascript': 22,
 			'swift':137,
@@ -63,13 +63,15 @@ class CodeRetriever:
 
 
 
-	#get the groupings of lines that are returned
 	def pickMostLikelyCode(self, lineSegments, code):
-		#here we look for code that:
-			#a) does shit(we don't want method declarations and all that shit, we want code)
-			#b) seems to do the right thing (methods that are named similar to keywords)
-			#TODO: implement an algorithm that finds other ways to predict if code does the right thing
+		"""Get the groupings of lines that are returned
 
+		Here we look for code that:
+
+			a) does shit(we don't want method declarations and all that shit, we want code)
+			b) seems to do the right thing (methods that are named similar to keywords)
+			TODO: implement an algorithm that finds other ways to predict if code does the right thing
+		"""
 		#list of general programming terms we don't want included
 		unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
 		#delete all general terms from the keywords
@@ -92,8 +94,8 @@ class CodeRetriever:
 		wantedCode = highestKeywords.index(max(highestKeywords))
 		return codeGroups[wantedCode]
 
-	#scrape and grab code from github
 	def querySearchCode(self):
+		"""Scrape and grab code from github"""
 
 		params = '+'.join(self.keywords)
 		#params += self.language
