@@ -87,13 +87,13 @@ class CodeRetriever:
 			codeGroups.append(codeLine)
 		codeGroups = self.removeCommentOnlyCode(codeGroups)
 		highestKeywords = []
-		kwdCount = 0
+		keywordCount = 0
 		#find the code segment that best matches our needs, based on keywords found in the code
 		for segment in codeGroups:
 			for word in self.keywords:
-				kwdCount = kwdCount + segment.count(word)
-			highestKeywords.append(kwdCount)
-			kwdCount = 0
+				keywordCount = keywordCount + segment.count(word)
+			highestKeywords.append(keywordCount)
+			keywordCount = 0
 		wantedCode = highestKeywords.index(max(highestKeywords))
 		return codeGroups[wantedCode]
 
