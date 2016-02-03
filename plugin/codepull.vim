@@ -63,11 +63,12 @@ class CodeRetriever:
 		def isComment(line):
 			return line[0] in '#\'"' or line.startswith('//')
 
+		result = []
 		for group in codeGroups:
 			lines = group.splitlines()
-			if any([isComment(line) for line in lines]):
-				codeGroups.remove(group)
-		return codeGroups
+			if not any([isComment(line) for line in lines]):
+				result.append(group)
+		return result
 
 
 
