@@ -124,17 +124,12 @@ class CodeRetriever:
 		result = []
 		segment = []
 		lineNumbers.sort()
-		#until the list is empty
-		while lineNumbers:
-			#get the minimum line number
-			firstLine = min(lineNumbers)
-			lineNumbers.remove(firstLine)
-			#if this is the first line ever, just put it in
-			if segment and firstLine != int(max(segment))+1:
+		for lineNumber in lineNumbers:
+			if segment and lineNumber != int(max(segment))+1:
 				#it belongs in a new group, so finalize the old group, and start a new one
 				result.append(segment)
 				segment = []
-			segment.append(firstLine)
+			segment.append(lineNumber)
 		result.append(segment)
 		return result
 
