@@ -120,7 +120,7 @@ class CodeRetriever:
 
 
 	def getLineGroups(self, lineDict):
-		numList = [int(k) for k,v in lineDict.items()]
+		numList = [int(k) for k in lineDict.keys()]
 		groupNumber = 0
 		finGroups = []
 		segment = []
