@@ -111,12 +111,7 @@ class CodeRetriever:
 	#scrape and grab code from github
 	def querySearchCode(self):
 
-		params = ''
-		for i in self.keywords:
-			#print i
-			params = params + i + '+'
-			#print i
-		params = params[:-1]#remove the ending '+'
+		params = '+'.join(self.keywords)
 		#params += self.language
 		query = 'https://searchcode.com/api/codesearch_I/'#?q=reverse+string&lan=19'
 		q = {'q':params,
