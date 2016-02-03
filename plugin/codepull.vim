@@ -77,8 +77,8 @@ class CodeRetriever:
 			self.keywords = [w for w in self.keywords if w.lower() not in unwanted]
 
 			#compile the lines into code segments
-			for outer in lineSegments:
-				codeLine = '\n'.join([code[str(inner) for inner in outer])
+			for lineSegment in lineSegments:
+				codeLine = '\n'.join([code[str(s)] for s in lineSegment])
 				codeGroups.append(codeLine)
 			codeGroups = self.removeCommentOnlyCode(codeGroups)
 			highestKeywords = []
