@@ -120,31 +120,31 @@ class CodeRetriever:
 
 
 	def getLineGroups(self, lineDict):
-		numList = [int(k) for k in lineDict.keys()]
+		lineNumbers = [int(k) for k in lineDict.keys()]
 		groupNumber = 0
-		finGroups = []
+		result = []
 		segment = []
-		numList.sort()
+		lineNumbers.sort()
 		#until the list is empty
-		while numList:
+		while lineNumbers:
 			#get the minimum line number
-			init = min(numList)
-			numList.remove(init)
+			firstLine = min(lineNumbers)
+			lineNumbers.remove(firstLine)
 			#if this is the first line ever, just put it in
 			if not segment:
-				segment.append(init)
+				segment.append(firstLine)
 			else:
 				#if the line is 1 greater than the max in the list, it is the next line, so append it
-				if init == int(max(segment))+1:
-					segment.append(init)
+				if firstLine == int(max(segment))+1:
+					segment.append(firstLine)
 				#else, it belongs in a new group, so finalize the old group, and start a new one
 				else:
-					finGroups.append(segment)
+					result.append(segment)
 					groupNumber = groupNumber + 1
 					segment = []
-					segment.append(init)
-		finGroups.append(segment)
-		return finGroups
+					segment.append(firstLine)
+		result.append(segment)
+		return result
 
 
 args = vim.eval("a:description")
