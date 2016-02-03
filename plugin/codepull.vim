@@ -77,7 +77,7 @@ class CodeRetriever:
 			#delete all general terms from the keywords
 			for word in unwanted:
 				for keyword in self.keywords:
-					if word.lower() == keyword.lower():
+					if word == keyword.lower():
 						self.keywords.remove(keyword)
 
 			#compile the lines into code segments
