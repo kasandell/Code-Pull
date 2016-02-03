@@ -126,12 +126,12 @@ class CodeRetriever:
 		segment = []
 		numList.sort()
 		#until the list is empty
-		while numList != []:
+		while numList:
 			#get the minimum line number
 			init = min(numList)
 			numList.remove(init)
 			#if this is the first line ever, just put it in
-			if segment == []:
+			if not segment:
 				segment.append(init)
 			else:
 				#if the line is 1 greater than the max in the list, it is the next line, so append it
