@@ -70,27 +70,27 @@ class CodeRetriever:
 			#b) seems to do the right thing (methods that are named similar to keywords)
 			#TODO: implement an algorithm that finds other ways to predict if code does the right thing
 
-			#list of general programming terms we don't want included
-			unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
-			#delete all general terms from the keywords
-			self.keywords = [w for w in self.keywords if w.lower() not in unwanted]
+		#list of general programming terms we don't want included
+		unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
+		#delete all general terms from the keywords
+		self.keywords = [w for w in self.keywords if w.lower() not in unwanted]
 
-			#compile the lines into code segments
-			codeGroups = []
-			for lineSegment in lineSegments:
-				codeLine = '\n'.join([code[str(s)] for s in lineSegment])
-				codeGroups.append(codeLine)
-			codeGroups = self.removeCommentOnlyCode(codeGroups)
-			highestKeywords = []
+		#compile the lines into code segments
+		codeGroups = []
+		for lineSegment in lineSegments:
+			codeLine = '\n'.join([code[str(s)] for s in lineSegment])
+			codeGroups.append(codeLine)
+		codeGroups = self.removeCommentOnlyCode(codeGroups)
+		highestKeywords = []
+		kwdCount = 0
+		#find the code segment that best matches our needs, based on keywords found in the code
+		for segment in codeGroups:
+			for word in self.keywords:
+				kwdCount = kwdCount + segment.count(word)
+			highestKeywords.append(kwdCount)
 			kwdCount = 0
-			#find the code segment that best matches our needs, based on keywords found in the code
-			for segment in codeGroups:
-				for word in self.keywords:
-					kwdCount = kwdCount + segment.count(word)
-				highestKeywords.append(kwdCount)
-				kwdCount = 0
-			wantedCode = highestKeywords.index(max(highestKeywords))
-			return codeGroups[wantedCode]
+		wantedCode = highestKeywords.index(max(highestKeywords))
+		return codeGroups[wantedCode]
 
 	#scrape and grab code from github
 	def querySearchCode(self):
