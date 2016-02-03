@@ -130,16 +130,10 @@ class CodeRetriever:
 			firstLine = min(lineNumbers)
 			lineNumbers.remove(firstLine)
 			#if this is the first line ever, just put it in
-			if not segment:
-				pass
-			else:
-				#if the line is 1 greater than the max in the list, it is the next line, so append it
-				if firstLine == int(max(segment))+1:
-					pass
-				#else, it belongs in a new group, so finalize the old group, and start a new one
-				else:
-					result.append(segment)
-					segment = []
+			if segment and firstLine != int(max(segment))+1:
+				#it belongs in a new group, so finalize the old group, and start a new one
+				result.append(segment)
+				segment = []
 			segment.append(firstLine)
 		result.append(segment)
 		return result
