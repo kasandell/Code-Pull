@@ -66,11 +66,7 @@ class CodeRetriever:
 		def hasComments(group):
 			return any([isComment(line) for line in group.splitlines()])
 
-		result = []
-		for group in codeGroups:
-			if not hasComments(group):
-				result.append(group)
-		return result
+		return [g for g in codeGroups if not hasComments(g)]
 
 
 
