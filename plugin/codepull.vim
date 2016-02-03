@@ -72,10 +72,13 @@ class CodeRetriever:
 			b) seems to do the right thing (methods that are named similar to keywords)
 			TODO: implement an algorithm that finds other ways to predict if code does the right thing
 		"""
-		#list of general programming terms we don't want included
-		unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
+		def wanted(word):
+			#list of general programming terms we don't want included
+			unwanted = ['string', 'int', 'double', 'float', 'bool', 'boolean', 'char', 'integer']
+			return word.lower() not in unwanted
+
 		#delete all general terms from the keywords
-		self.keywords = [w for w in self.keywords if w.lower() not in unwanted]
+		self.keywords = [w for w in self.keywords if wanted(w)]
 
 		#compile the lines into code segments
 		codeGroups = []
