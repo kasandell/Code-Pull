@@ -18,7 +18,7 @@ class CodeRetriever:
 	#initialize the class with keywords and language
 	def __init__(self, initKeywords, lang):
 		self.keywords = initKeywords
-		d = {'javascript': '22',
+		d = {'javascript': 22,
 			'swift':137,
 			'python':19,
 			'c': 28,
@@ -49,7 +49,7 @@ class CodeRetriever:
 			'assembly':34,
 			'typescript':151}
 		l = d[lang]
-		self.language = int(l)#this will be determined from the ending of the file
+		self.language = l #  this will be determined from the ending of the file
 		#print self.language
 
 	def removeCommentOnlyCode(self, codeGroups):
