@@ -114,8 +114,7 @@ class CodeRetriever:
 		firstCodeSet = js['results'][0]['lines']
 		lineGroups = self.getLineGroups(firstCodeSet)
 		#extract section of html containing top answer
-		finCode = self.pickMostLikelyCode(lineGroups, firstCodeSet)
-		return finCode
+		return self.pickMostLikelyCode(lineGroups, firstCodeSet)
 		#if we did, follow the link to the code, and extract the entire method that is there
 
 
